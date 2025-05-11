@@ -6,7 +6,7 @@
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:15:13 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/11 16:24:10 by gustoliv         ###   ########.fr       */
+/*   Updated: 2025/05/11 17:48:22 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	while (s2[j] != '\n' && s2[j])
 		j++;
-	i += (s2[j] == '\n');
-	str = malloc((i + j + 1) * sizeof(char *));
+	str = malloc(((i + j + 1) + (s2[j] == '\n')) * sizeof(char *));
 	if (!str)
 		return (NULL);
 	temp = str;
@@ -37,6 +36,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		*str++ = *s2++;
 	if (*s2 == '\n')
 		*str++ = '\n';
+	// if (s1)
+	// 	free(s1);
 	*str = '\0';
 	return (temp);
 }
