@@ -6,7 +6,7 @@
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:15:15 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/05 20:17:27 by gustoliv         ###   ########.fr       */
+/*   Updated: 2025/05/07 22:31:58 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	read(fd, s, BUFFER_SIZE);
-	while (check_newline(s, BUFFER_SIZE))
+	while (check_newline(s) && read(fd, s, BUFFER_SIZE) > 0)
 	{
-		
+		line = ft_strjoin(line, s);
 	}
+	clean_buffer(s);
 	return (line);
 }
-
 int main()
 {
 	int fd = open("test.txt", O_RDONLY);
