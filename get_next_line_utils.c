@@ -6,7 +6,7 @@
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:15:13 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/07 23:03:24 by gustoliv         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:24:10 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (*s2 == '\n')
 		*str++ = '\n';
 	*str = '\0';
-	free(s1);
 	return (temp);
 }
 int	check_newline(char *str)
@@ -48,7 +47,7 @@ int	check_newline(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n' || str[i] == '\0')
+		if (str[i] == '\n')
 			return (0);
 		i++;
 	}
@@ -63,7 +62,7 @@ void	clean_buffer(char *buffer)
 	i = 0;
 	while (buffer[i])
 	{
-		if (buffer[i] == '\n' && i++)
+		if (buffer[i] == '\n' && ++i)
 			break;
 		buffer[i++] = '\0';
 	}
