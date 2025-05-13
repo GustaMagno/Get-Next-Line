@@ -6,7 +6,7 @@
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:09:08 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/12 16:56:32 by gustoliv         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:27:17 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
+#  define BUFFER_SIZE 2
 # endif
 
 # include <limits.h>

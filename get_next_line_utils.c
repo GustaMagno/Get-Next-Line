@@ -6,7 +6,7 @@
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:15:13 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/12 16:56:24 by gustoliv         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:28:08 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,6 @@ char	*ft_strjoin(char *s1, char *s2, char *s1_temp)
 	*str = '\0';
 	return (temp);
 }
-int ft_strlen(char *s)
-{
-	int i = 0;
-	while(s[i])
-		i++;
-	return i;
-}
-
-// char *ft_strjoin(char *s1, char *s2)
-// {
-// 	char *str;
-// 	char *tmp;
-// 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-// 	tmp = str;
-// 	if(s1)
-// 	{
-// 		while(*s1)
-// 			*str++ = *s1++;
-// 	}
-// 	if(s2)
-// 	{
-// 		while(*s2)
-// 			*str++ = *s2++;
-// 	}
-// 	*str = '\0';
-// 	return(tmp);
-// }
 int	check_newline(char *str)
 {
 	int	i;
@@ -88,11 +61,14 @@ void	clean_buffer(char *buffer)
 	i = 0;
 	while (buffer[i])
 	{
-		if (buffer[i++] == '\n')
+		if (buffer[i] == '\n' && ++i)
 			break;
 		buffer[i++] = '\0';
 	}
 	while (buffer[i])
-		buffer[j++] = buffer[i++];
+	{	
+		buffer[j++] = buffer[i];
+		buffer[i++] = '\0';
+	}
 	buffer[j] = '\0';
 }
