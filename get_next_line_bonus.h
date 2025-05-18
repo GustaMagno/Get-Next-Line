@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 19:37:44 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/11 16:23:31 by gustoliv         ###   ########.fr       */
+/*   Created: 2025/05/18 18:29:58 by gustoliv          #+#    #+#             */
+/*   Updated: 2025/05/18 18:30:19 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-void	clean_buffer(char *buffer)
-{
-	int	i;
-	int	j;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2
+# endif
 
-	j = 0;
-	i = 0;
-	while (buffer[i])
-	{
-		if (buffer[i] == '\n' && ++i)
-			break;
-		i++;
-	}
-	while (buffer[i])
-	{
-		buffer[j++] = buffer[i++];
-	}
-	buffer[j] = '\0';
-	printf("%s", buffer);
-}
-int main()
-{
-	char	str[] = "saoidhousad\ndef";
+# include <limits.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+char	*ft_strjoin(char *s1, char *s2, char *s1_temp);
+int		check_newline(char *str);
+void	clean_buffer(char *buffer);
 
-	clean_buffer(str);
-}
+#endif
