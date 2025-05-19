@@ -6,7 +6,7 @@
 /*   By: gustoliv <gustoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:15:15 by gustoliv          #+#    #+#             */
-/*   Updated: 2025/05/13 15:26:37 by gustoliv         ###   ########.fr       */
+/*   Updated: 2025/05/18 21:49:42 by gustoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,38 @@ char	*get_next_line(int fd)
 {
 	static char	s[BUFFER_SIZE + 1];
 	char		*line;
-
-	line = NULL;
-	// if (s[0] != '\0')
-	// {
-	// 	line = ft_strjoin(line, s);
-	// }
-	while (*s || read(fd, s, BUFFER_SIZE) > 0)
-	{	
-		line = ft_strjoin(line, s, line);
-		if (!check_newline(s))
-			return (clean_buffer(s), line);
-		clean_buffer(s);
-	}
-	// if (!check_newline(s))
-	// 	line = ft_strjoin(line, s);
+	int			size;
 	
-	// printf("LIMPANDO : %s\n", s);
+	line = NULL;
+	size = 1;
+	if (fd < 0 || fd >= FOPEN_MAX)
+		return (NULL);
+	while (size)
+	{	
+		if (*s == '\0')
+			size = read(fd, s, BUFFER_SIZE);
+		if (size < 0)
+			return (clean_buffer(s, 1), free(line), NULL);
+		if (size)
+		{
+			line = ft_strjoin(line, s, line);
+			if (!check_newline(s))
+				return (clean_buffer(s, 0), line);
+			clean_buffer(s, 0);
+		}
+	}
 	return (line);
 }
-int main()
-{
-	char	*s;
-	int fd = open("test.txt", O_RDONLY);
-	// s = get_next_line(fd);
-	//printf("%s", s);
+// int main()
+// {
+// 	char	*s;
+// 	int fd = open("test.txt", O_RDONLY);
+// 	// s = get_next_line(fd);
+// 	//printf("%s", s);
 	
-	s = get_next_line(fd);
-	printf("%s", s);
-	free(s);
-	
-	s = get_next_line(fd);
-	printf("%s", s);
-	free(s);
-	
-	s = get_next_line(fd);
-	printf("%s", s);
-	free(s);
-}
+// 	while ((s = get_next_line(fd)))
+// 	{
+// 		printf("%s", s);
+// 		free(s);
+// 	}
+// }
